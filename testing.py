@@ -9,8 +9,8 @@ import environment
 
 #Setting seeds for reproducibility
 os.environ['PYTHONHASHSEED'] = '0'
-np.random.seed(42)
-rn.seed(12345)
+np.random.seed(22)
+rn.seed(54321)
 
 #CONFIGURATION OF THE PARAMETERS 
 number_actions = 5 
@@ -28,7 +28,7 @@ train = False
 #ONE YEAR'S SIMULATION RUN IN INFERENCE MODE
 env.train = train
 current_state, _ , _ = env.observe()
-for timestep in range(0, 30*12*24*60): #minutes of the year
+for timestep in range(0, 30*12*24*60): #minutes of the year 30*12*24*60
     
     #EXECUTE THE FOLLOWING ACTION BY INFERENCE
     q_values = model.predict(current_state, verbose= False)
@@ -46,6 +46,6 @@ for timestep in range(0, 30*12*24*60): #minutes of the year
             
 #PRINT TRAINING RESULTS AT THE END OF THE EPOCH
 print("\n")
-print(" - Energia total gastada por el sistema con IA: {:.0f} J.".format(env.total_energy_ai))
-print(" - Energia total gastada por el sistema sin IA: {:.0f} J.".format(env.total_energy_noai))
-print(" - Energía ahorrada: {:.1f} %".format( ( (env.total_energy_noai - env.total_energy_ai) / (env.total_energy_noai) )*100 ) )
+print(" Total energy expended by the system with AI: {:.0f} J.".format(env.total_energy_ai))
+print(" Total energy expended by the system without AI: {:.0f} J.".format(env.total_energy_noai))
+print(" Energy saved: {:.1f} %".format( ( (env.total_energy_noai - env.total_energy_ai) / (env.total_energy_noai) )*100 ) )
